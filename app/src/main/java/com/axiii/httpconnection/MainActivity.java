@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         new GetDataTask().execute();
     }
 
+    //api call
     private class GetDataTask extends AsyncTask<Void, Void, String> {
         @Override
         protected String doInBackground(Void... voids) {
@@ -81,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // model class
     public static class MyDataModel {
         private String title;
 
@@ -93,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //adapter
     public static class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         private List<MyDataModel> dataList;
 
