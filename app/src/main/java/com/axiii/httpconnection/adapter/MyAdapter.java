@@ -37,7 +37,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
 
-    public void submitList(List<MyDataModel> dataList){
+    public void submitList(List<MyDataModel> dataList) {
         this.dataList = dataList;
         notifyDataSetChanged();
     }
