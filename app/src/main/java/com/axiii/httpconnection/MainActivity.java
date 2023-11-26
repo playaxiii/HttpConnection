@@ -120,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
             return dataList.size();
         }
 
+
         public static class MyViewHolder extends RecyclerView.ViewHolder {
             public TextView titleTextView;
 
