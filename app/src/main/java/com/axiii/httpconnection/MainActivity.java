@@ -11,6 +11,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.axiii.httpconnection.adapter.MyAdapter;
+import com.axiii.httpconnection.model.MyDataModel;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -37,10 +40,10 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        adapter = new MyAdapter(dataList);
-        recyclerView.setAdapter(adapter);
-
+        adapter = new MyAdapter();
         new GetDataTask().execute();
+
+
     }
 
     //api call
@@ -72,9 +75,13 @@ public class MainActivity extends AppCompatActivity {
 
                         MyDataModel data = new MyDataModel(title);
                         dataList.add(data);
+
+                        adapter.submitList(dataList);
+                        recyclerView.setAdapter(adapter);
+
                     }
 
-                    adapter.notifyDataSetChanged();
+                   // adapter.notifyDataSetChanged();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -83,51 +90,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // model class
-    public static class MyDataModel {
-        private String title;
 
-        public MyDataModel(String title) {
-            this.title = title;
-        }
-
-        public String getTitle() {
-            return title;
-        }
-    }
 
     //adapter
-    public static class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
-        private List<MyDataModel> dataList;
-
-        public MyAdapter(List<MyDataModel> dataList) {
-            this.dataList = dataList;
-        }
-
-        @Override
-        public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout, parent, false);
-            return new MyViewHolder(view);
-        }
-
-        @Override
-        public void onBindViewHolder(MyViewHolder holder, int position) {
-            MyDataModel data = dataList.get(position);
-            holder.titleTextView.setText(data.getTitle());
-        }
-
-        @Override
-        public int getItemCount() {
-            return dataList.size();
-        }
-
-
-        public static class MyViewHolder extends RecyclerView.ViewHolder {
-            public TextView titleTextView;
-
-            public MyViewHolder(View itemView) {
-                super(itemView);
-                titleTextView = itemView.findViewById(R.id.itemNameTextView);
-            }
-        }
-    }
 }
