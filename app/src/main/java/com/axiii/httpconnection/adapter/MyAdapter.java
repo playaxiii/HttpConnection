@@ -35,8 +35,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int adapterPosition = holder.getAdapterPosition();
-                Toast.makeText(v.getContext(), "Index " + adapterPosition + " Clicked: " + data.getTitle(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(v.getContext(), "Index " + holder.getAdapterPosition() + " Clicked: " + data.getTitle(), Toast.LENGTH_SHORT).show();
             }
         });
     }
