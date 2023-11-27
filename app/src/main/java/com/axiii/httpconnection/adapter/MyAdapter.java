@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -29,6 +30,15 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public void onBindViewHolder(MyAdapter.MyViewHolder holder, int position) {
         MyDataModel data = dataList.get(position);
         holder.titleTextView.setText(data.getTitle());
+
+        // set click listener in toast message
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int adapterPosition = holder.getAdapterPosition();
+                Toast.makeText(v.getContext(), "Index " + adapterPosition + " Clicked: " + data.getTitle(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
